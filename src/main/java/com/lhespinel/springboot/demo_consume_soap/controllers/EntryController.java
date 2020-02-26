@@ -1,6 +1,6 @@
 package com.lhespinel.springboot.demo_consume_soap.controllers;
 
-import com.lhespinel.springboot.demo_consume_soap.dtos.MessageReponse;
+import com.lhespinel.springboot.demo_consume_soap.dtos.MessageResponse;
 import com.lhespinel.springboot.demo_consume_soap.services.iEntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class EntryController {
     iEntryService entryService;
 
     @GetMapping(value = "convert_number")
-    public MessageReponse convertNumber(@RequestParam(value="number") Integer number){
+    public MessageResponse convertNumber(@RequestParam(value="number") Integer number){
         return entryService.translateNumber(number);
     }
 

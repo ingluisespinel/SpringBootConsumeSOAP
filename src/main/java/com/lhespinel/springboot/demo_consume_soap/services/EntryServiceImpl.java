@@ -1,6 +1,6 @@
 package com.lhespinel.springboot.demo_consume_soap.services;
 
-import com.lhespinel.springboot.demo_consume_soap.dtos.MessageReponse;
+import com.lhespinel.springboot.demo_consume_soap.dtos.MessageResponse;
 import com.lhespinel.springboot.demo_consume_soap.external_resources.soap.number_convertion.NumberToWords;
 import com.lhespinel.springboot.demo_consume_soap.external_resources.soap.number_convertion.NumberToWordsResponse;
 import com.lhespinel.springboot.demo_consume_soap.utils.soap.SoapConnector;
@@ -18,11 +18,11 @@ public class EntryServiceImpl implements iEntryService {
     SoapConnector soapConnector;
 
     @Override
-    public MessageReponse translateNumber(Integer numberToTranslate) {
+    public MessageResponse translateNumber(Integer numberToTranslate) {
         // Send request to SOAP web service
         NumberToWords numberToWordsRequest=new NumberToWords();
         numberToWordsRequest.setUbiNum(new BigInteger(numberToTranslate+""));
         NumberToWordsResponse response=(NumberToWordsResponse) soapConnector.callWebService("https://www.dataaccess.com/webservicesserver/numberconversion.wso?WSDL",numberToWordsRequest);
-        return new MessageReponse(response.getNumberToWordsResult(),System.currentTimeMillis()+"");
+        return new MessageResponse(response.getNumberToWordsResult(),System.currentTimeMillis()+"");
     }
 }
